@@ -33,7 +33,6 @@ hdt\petshopproject\form\TabRevenue.class
 hdt\petshopproject\run\run$7.class
 hdt\petshopproject\form\TabCustomer$5.class
 hdt\petshopproject\model\nhanVien.class
-hdt\petshopproject\window\ThanhToan$3$1.class
 hdt\petshopproject\form\TabSetting.class
 hdt\petshopproject\window\ThanhToan$2.class
 hdt\petshopproject\run\run$18.class
@@ -67,9 +66,11 @@ hdt\petshopproject\model\Customer.class
 hdt\petshopproject\form\TabStock$3.class
 hdt\petshopproject\form\TabCustomer$3.class
 hdt\petshopproject\form\TabStaffManager$6.class
+hdt\petshopproject\window\ThanhToan$4.class
 hdt\petshopproject\window\ThanhToan.class
 hdt\petshopproject\swing\scrollbar\ModernScrollBarUI.class
 hdt\petshopproject\form\TabStock$19.class
+hdt\petshopproject\window\ThanhToan$4$1.class
 hdt\petshopproject\form\TabNhanVien$2.class
 hdt\petshopproject\form\TabStock$13.class
 hdt\petshopproject\form\home\TabHome.class
