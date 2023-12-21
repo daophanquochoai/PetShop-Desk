@@ -1,15 +1,14 @@
-
 package hdt.petshopproject.form.home;
 public class cardSanPham extends javax.swing.JPanel {
 
     public cardSanPham() {
         initComponents();
     }
-    public cardSanPham(String MaThuCung,String TenThuCung,Double Gia) {
+    public cardSanPham(int idDV,String tenDV, int giaDV) {
         initComponents();
-        lblidThuCung.setText(MaThuCung);
-        lblTenThuCung.setText(TenThuCung);
-        lblGia.setText(Gia.toString());
+        IdDV.setText(Integer.toString(idDV));
+        TenDV.setText(tenDV);
+        GiaDV.setText(Integer.toString(giaDV));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -22,13 +21,13 @@ public class cardSanPham extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        lblGia = new javax.swing.JLabel();
+        GiaDV = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        lblidThuCung = new javax.swing.JLabel();
+        IdDV = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblTenThuCung = new javax.swing.JLabel();
+        TenDV = new javax.swing.JLabel();
         lblAnh = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(140, 220));
@@ -43,12 +42,12 @@ public class cardSanPham extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(54, 54, 54));
         jLabel5.setText("Giá:");
 
-        lblGia.setForeground(new java.awt.Color(51, 51, 51));
-        lblGia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblGia.setText("x.000.000.000 ");
-        lblGia.setMaximumSize(new java.awt.Dimension(90, 16));
-        lblGia.setMinimumSize(new java.awt.Dimension(90, 16));
-        lblGia.setPreferredSize(new java.awt.Dimension(90, 16));
+        GiaDV.setForeground(new java.awt.Color(51, 51, 51));
+        GiaDV.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        GiaDV.setText("x.000.000.000 ");
+        GiaDV.setMaximumSize(new java.awt.Dimension(90, 16));
+        GiaDV.setMinimumSize(new java.awt.Dimension(90, 16));
+        GiaDV.setPreferredSize(new java.awt.Dimension(90, 16));
 
         jLabel11.setText("đ");
 
@@ -65,16 +64,15 @@ public class cardSanPham extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("ID:");
 
-        lblidThuCung.setForeground(new java.awt.Color(102, 102, 102));
-        lblidThuCung.setText("D0001");
+        IdDV.setForeground(new java.awt.Color(102, 102, 102));
+        IdDV.setText("D0001");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Loài:");
 
-        lblTenThuCung.setForeground(new java.awt.Color(51, 51, 51));
-        lblTenThuCung.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTenThuCung.setText("Dogo Argentino");
-        lblTenThuCung.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        TenDV.setForeground(new java.awt.Color(51, 51, 51));
+        TenDV.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TenDV.setText("Dogo Argentino");
+        TenDV.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,18 +86,18 @@ public class cardSanPham extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTenThuCung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(TenDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblidThuCung, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(IdDV, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblGia, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(GiaDV, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -109,17 +107,17 @@ public class cardSanPham extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTenThuCung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TenDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(lblGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GiaDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
                     .addComponent(jLabel3)
-                    .addComponent(lblidThuCung))
+                    .addComponent(IdDV))
                 .addContainerGap())
         );
 
@@ -155,6 +153,9 @@ public class cardSanPham extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GiaDV;
+    private javax.swing.JLabel IdDV;
+    private javax.swing.JLabel TenDV;
     private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
@@ -162,8 +163,5 @@ public class cardSanPham extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAnh;
-    private javax.swing.JLabel lblGia;
-    private javax.swing.JLabel lblTenThuCung;
-    private javax.swing.JLabel lblidThuCung;
     // End of variables declaration//GEN-END:variables
 }
