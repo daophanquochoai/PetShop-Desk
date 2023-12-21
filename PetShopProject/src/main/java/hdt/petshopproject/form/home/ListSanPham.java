@@ -13,11 +13,11 @@ public class ListSanPham extends javax.swing.JPanel {
 
 
     public ListSanPham() {
-        initComponents();
-         for(int i=0;i<8;i++){
-            cSanPham.add(new cardSanPham());
-            add(cSanPham.get(i));
-        }
+//        initComponents();
+//         for(int i=0;i<8;i++){
+//            cSanPham.add(new cardSanPham());
+//            add(cSanPham.get(i));
+//        }
     }
 
     @SuppressWarnings("unchecked")

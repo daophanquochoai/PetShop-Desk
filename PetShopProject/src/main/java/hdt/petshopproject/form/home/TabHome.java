@@ -1,10 +1,12 @@
 
 package hdt.petshopproject.form.home;
 
+import hdt.petshopproject.DAO.cardSanPhamHome_List;
+import hdt.petshopproject.model.cardSanPhamHome;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -22,18 +24,22 @@ public class TabHome extends javax.swing.JPanel {
         ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
         sb.setForeground(new Color(130,130,130));
         jScrollPane1.setVerticalScrollBar(sb);
-        initListSanPham(20);
+//        initListSanPham(20);
+        initCombo();
+//        cardSanPhamHome_List cardList = new cardSanPhamHome_List();
+//        listSanPham.add(cardList, BorderLayout.CENTER);
+        initSanPham();
     }
     
    
-    private void initListSanPham(int soLuong){
-        for( int i =0;i<soLuong;i++){
-            lsCardSP.add(new cardSanPham());
-            listSanPham.add(lsCardSP.get(i));
-            
-        }
-        listSanPham.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
-    }
+//    private void initListSanPham(int soLuong){
+//        for( int i =0;i<soLuong;i++){
+//            lsCardSP.add(new cardSanPham());
+//            listSanPham.add(lsCardSP.get(i));
+//            
+//        }
+//        listSanPham.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -49,7 +55,7 @@ public class TabHome extends javax.swing.JPanel {
         H_Combo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listSanPham = new javax.swing.JPanel();
+        listSP = new javax.swing.JPanel();
         oder = new hdt.petshopproject.component.Oder();
 
         jMenu1.setText("jMenu1");
@@ -121,10 +127,10 @@ public class TabHome extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setOpaque(false);
 
-        listSanPham.setMinimumSize(new java.awt.Dimension(910, 20));
-        listSanPham.setPreferredSize(new java.awt.Dimension(910, 910));
-        listSanPham.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 12, 10));
-        jScrollPane1.setViewportView(listSanPham);
+        listSP.setMinimumSize(new java.awt.Dimension(910, 20));
+        listSP.setPreferredSize(new java.awt.Dimension(910, 910));
+        listSP.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 12, 10));
+        jScrollPane1.setViewportView(listSP);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -164,7 +170,7 @@ public class TabHome extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void initCombo(){
-        String sql = "select Loai from hangHoa";
+        String sql = "select distinct Loai from hangHoa";
         List<String> list = new ArrayList<>();
         try (
             Connection con = helper.openConnection(); 
@@ -178,6 +184,19 @@ public class TabHome extends javax.swing.JPanel {
         }
         catch( Exception e){
             System.out.print("Loi combo");
+        }
+    }
+    public void initSanPham(){
+        cardSanPhamHome_List dao = new cardSanPhamHome_List();
+        List<cardSanPhamHome> dataList = dao.loadDataFromSQL();
+
+        for (cardSanPhamHome data : dataList) {
+            cardSanPham cardSP = new cardSanPham(data.getIdDV(), data.getTenDV(), data.getGiaDV());
+//            ListSanPham listSanPham = new ListSanPham();
+////            listSanPham.setLoaiDV(data.getLoaiDV());
+//            listSanPham.add(cardSP, BorderLayout.CENTER);
+//            listSP.add(listSanPham);
+            listSP.add(cardSP, BorderLayout.CENTER);
         }
     }
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -201,7 +220,7 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel listSanPham;
+    private javax.swing.JPanel listSP;
     private hdt.petshopproject.component.Oder oder;
     // End of variables declaration//GEN-END:variables
 }
