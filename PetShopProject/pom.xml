@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>hdt</groupId>
     <artifactId>PetShopProject</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.5.2</version>
     <packaging>jar</packaging>
+    
     <dependencies>
+        <!-- Các dependencies khác -->
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
@@ -14,7 +19,7 @@
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>9.4.0.jre8</version> <!-- (hoặc phiên bản mới nhất) -->
+            <version>9.4.0.jre8</version>
         </dependency>
         <dependency>
             <groupId>com.toedter</groupId>
@@ -22,47 +27,36 @@
             <version>1.4</version>
         </dependency>
         <dependency>
-            <groupId>org.jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>1.5.3</version> <!-- Điền vào phiên bản cụ thể bạn muốn sử dụng -->
-        </dependency>
-        <dependency>
-            <groupId>JFreeJ</groupId>
-            <artifactId>Chart</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>JFreeJ</groupId>
-            <artifactId>ChartCommon</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>Chart</groupId>
-            <artifactId>BarChart</artifactId>
-            <version>1</version>
-        </dependency>
+        <groupId>org.jfree</groupId>
+        <artifactId>jfreechart</artifactId>
+        <version>1.5.2</version>
+    </dependency>
+        <!-- Thêm các dependencies khác nếu cần -->
     </dependencies>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>hdt.petshopproject.run.run</exec.mainClass>
     </properties>
+    
     <build>
-    <plugins>
-      <plugin>
-          <!-- Build an executable JAR -->
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifest>
-                <addClasspath>true</addClasspath>
-                <mainClass>hdt.petshopproject.run.run</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-    </plugins>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>hdt.petshopproject.run.run</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

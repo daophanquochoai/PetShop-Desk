@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -18,9 +19,9 @@ public class cardSanPhamHome_List extends JPanel {
     public ArrayList<cardSanPhamHome> loadDataByLoai(String loai) {
         ArrayList<cardSanPhamHome> dataList = new ArrayList<>();
 
-        String sql = "SELECT ID, Ten, giaTien, Loai FROM hangHoa";
+        String sql = "SELECT ID, Ten, giaTien, Loai, trangThai FROM hangHoa where trangThai = 'False' ";
         if (!"Tất cả".equals(loai)) {
-            sql += " WHERE Loai = '" + loai + "'";
+            sql += " and Loai = '" + loai + "'";
         }
         sql += " ORDER BY Loai";
 
@@ -35,7 +36,7 @@ public class cardSanPhamHome_List extends JPanel {
                 cardSpHome.setTenDV(rs.getString("Ten"));
                 cardSpHome.setIdDV(rs.getInt("ID"));
                 cardSpHome.setGiaDV(rs.getInt("GiaTien"));
-
+                cardSpHome.setTrangThai(  Boolean.parseBoolean(rs.getString("trangThai")));
                 dataList.add(cardSpHome);
             }
         } catch (Exception e) {
@@ -70,5 +71,23 @@ public class cardSanPhamHome_List extends JPanel {
         }
 
         return searchResults;
+    }
+    public List<cardSanPhamHome>  chiTiet(int ID) throws Exception{
+        String sql = "select ct.ID_HH, h.Ten, h.giaTien from chiTietDonHang as ct join hangHoa as h on h.ID = ct.ID_HH where ct.ID_HD = ?";
+        List<cardSanPhamHome> listSP = new ArrayList<>();
+        try (
+            Connection con = helper.openConnection();  
+            PreparedStatement pstm = con.prepareStatement(sql);) {
+            pstm.setString(1, String.valueOf(ID));
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                cardSanPhamHome sp = new cardSanPhamHome();
+                sp.setIdDV(Integer.parseInt(rs.getString("ID_HH")));
+                sp.setTenDV(rs.getString("Ten"));
+                sp.setGiaDV(rs.getInt("giaTien"));
+                listSP.add(sp);
+            }
+            return listSP;
+        }
     }
 }

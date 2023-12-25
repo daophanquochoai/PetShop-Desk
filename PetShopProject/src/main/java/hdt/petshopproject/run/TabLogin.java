@@ -101,14 +101,14 @@ public class TabLogin extends javax.swing.JFrame {
         Connection conn = null;
         try{
             conn = cn.openConnection();
-            String sql = "Select taiKhoan, matKhau from nhanVien where taiKhoan=? and matKhau=?";
+            String sql = "Select taiKhoan, ID from nhanVien where taiKhoan=? and matKhau=?";
             PreparedStatement pst = conn.prepareCall(sql);
             pst.setString(1, txtTenDN.getText());
             pst.setString(2, txtMK.getText());
             ResultSet rs = pst.executeQuery();
             if (rs.next()){
                 JOptionPane.showMessageDialog(this,"Đăng nhập thành công!");
-                new run(txtTenDN.getText(), txtMK.getPassword().toString()).setVisible(true);
+                new run(txtTenDN.getText(), rs.getString("ID")).setVisible(true);
                 this.setVisible(false);
 //                run r = new run();
 //                r.show();

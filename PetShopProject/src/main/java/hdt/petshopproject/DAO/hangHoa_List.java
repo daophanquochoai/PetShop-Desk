@@ -222,4 +222,15 @@ public class hangHoa_List {
             return null;
         }
     }
+    
+    
+    public boolean updateDaBan(int id, String trangThai) throws Exception {
+        String sql = "Update hangHoa set trangThai = ? where ID = ?";
+        try (
+                Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
+            pstm.setString(1,trangThai);
+            pstm.setString(2, String.valueOf(id));
+            return pstm.executeUpdate() > 0;
+        }
+    }
 }

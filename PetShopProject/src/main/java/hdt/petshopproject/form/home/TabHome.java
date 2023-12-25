@@ -1,30 +1,39 @@
-    package hdt.petshopproject.form.home;
+package hdt.petshopproject.form.home;
 
 import hdt.petshopproject.DAO.cardSanPhamHome_List;
+import hdt.petshopproject.DAO.hangHoa_List;
 import hdt.petshopproject.component.Oder;
 import hdt.petshopproject.model.cardSanPhamHome;
+import hdt.petshopproject.model.hangHoa;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class TabHome extends javax.swing.JPanel {
 //    private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
     private final DefaultComboBoxModel<String> CbBox = new DefaultComboBoxModel<>();
-    
+    DefaultTableModel tableModel = new DefaultTableModel();
+
     public TabHome() {
         initComponents();
-        ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
-        sb.setForeground(new Color(130,130,130));
+        ScrollBarCustom sb = new ScrollBarCustom(10, 10, 100);
+        sb.setForeground(new Color(130, 130, 130));
         jScrollPane1.setVerticalScrollBar(sb);
-        
+        initTable();
         //Xóa chữ tìm kiếm trong JTextField ngay khi bấm vào
         Search_TextField.addFocusListener(new FocusListener() {
             @Override
@@ -37,7 +46,7 @@ public class TabHome extends javax.swing.JPanel {
 
             @Override
             public void focusLost(FocusEvent e) {
-                
+
             }
         }
         );
@@ -45,7 +54,6 @@ public class TabHome extends javax.swing.JPanel {
         initCombo();
         initSanPham();
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -171,7 +179,7 @@ public class TabHome extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,60 +189,85 @@ public class TabHome extends javax.swing.JPanel {
             .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-      
-    private void initCombo(){
+
+    public void initTable() {
+        String[] header = new String[]{"Mã", "Tên thú cưng", "Giá"};
+        tableModel.setColumnIdentifiers(header);
+        oder.getOrderTable().setModel(tableModel);
+    }
+
+    private void initCombo() {
         String sql = "select distinct Loai from hangHoa";
         String tatCa = "Tất cả";
         try (
-            Connection con = helper.openConnection(); 
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);) {
+                Connection con = helper.openConnection(); Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
             CbBox.removeAllElements();
             CbBox.addElement(tatCa);
             while (rs.next()) {
-               CbBox.addElement(rs.getString("Loai"));
+                CbBox.addElement(rs.getString("Loai"));
             }
             H_Combo.setModel(CbBox);
-        }
-        catch( Exception e){
-            System.out.print("Loi combo");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi combobox!");
         }
         H_Combo.addActionListener((java.awt.event.ActionEvent evt) -> {
             H_ComboActionPerformed(evt);
         });
     }
-    
-    private void initSanPham(){
+
+    private void initSanPham() {
         String selectedLoai = (String) H_Combo.getSelectedItem();
         updateDataByLoai(selectedLoai);
     }
+
     private void updateDataByLoai(String loai) {
         cardSanPhamHome_List dao = new cardSanPhamHome_List();
         ArrayList<cardSanPhamHome> dataList = dao.loadDataByLoai(loai);
 
         for (cardSanPhamHome data : dataList) {
-            cardSanPham cardSP = new cardSanPham(data.getIdDV(), data.getTenDV(), data.getGiaDV());
+            if( !data.isTrangThai()){
+                cardSanPham cardSP = new cardSanPham(data.getIdDV(), data.getTenDV(), data.getGiaDV());
             listSP.add(cardSP, BorderLayout.CENTER);
+            cardSP.getAddToCart_Btn().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    hangHoa hh = new hangHoa();
+                    int ID = Integer.parseInt(cardSP.getIdDV());
+                    try {
+                        hangHoa_List dao = new hangHoa_List();
+                        hh = dao.fillHH(ID);
+                        if (hh != null) {
+                            tableModel.addRow(new String[]{String.valueOf(ID), hh.getTen(), String.valueOf(hh.getGiaTien())});
+                            tableModel.fireTableDataChanged();
+                            dao.updateDaBan(ID, "True");
+                            updateDataByLoai(loai);
+                        }
+                    } catch (Exception exc) {
+                        JOptionPane.showMessageDialog(oder, "Dữ liệu thú cưng lỗi!!");
+                    }
+                }
+            });
+            }
         }
     }
-    
+
     private void searchByName() {
         String searchText = Search_TextField.getText();
         cardSanPhamHome_List dao = new cardSanPhamHome_List();
         ArrayList<cardSanPhamHome> searchResults = dao.loadDataByName(searchText);
         updateSearchResults(searchResults);
     }
-    
+
     private void updateSearchResults(ArrayList<cardSanPhamHome> searchResults) {
         for (cardSanPhamHome result : searchResults) {
             cardSanPham cardSP = new cardSanPham(result.getIdDV(), result.getTenDV(), result.getGiaDV());
             listSP.add(cardSP, BorderLayout.CENTER);
         }
     }
-    
-    
+
+
     private void Search_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_TextFieldActionPerformed
-        
+
     }//GEN-LAST:event_Search_TextFieldActionPerformed
 
     private void H_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_H_ComboActionPerformed
@@ -251,7 +284,22 @@ public class TabHome extends javax.swing.JPanel {
         listSP.revalidate();
         listSP.repaint();
     }//GEN-LAST:event_Search_BtnActionPerformed
-  
+    public void setlabelwithID(String ID) {
+        String sql = "Select taiKhoan from nhanVien where ID=?";
+        try {
+            Connection conn = helper.openConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, ID);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                oder.setName(rs.getString("taiKhoan"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Không nhận diện được nhân viên!!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Dữ liệu Admin lỗi!!");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> H_Combo;
@@ -267,4 +315,8 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JPanel listSP;
     private hdt.petshopproject.component.Oder oder;
     // End of variables declaration//GEN-END:variables
+
+    void addToOrderPanel(cardSanPham aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

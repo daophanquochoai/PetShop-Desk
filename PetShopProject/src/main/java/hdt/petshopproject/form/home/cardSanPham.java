@@ -1,9 +1,9 @@
 package hdt.petshopproject.form.home;
 
 import hdt.petshopproject.component.Oder;
+import javax.swing.JButton;
 
 public class cardSanPham extends javax.swing.JPanel {
-    Oder orderPanel = new Oder();
 
     public cardSanPham(int idDV,String tenDV, int giaDV) {
         initComponents();
@@ -26,6 +26,14 @@ public class cardSanPham extends javax.swing.JPanel {
 
     public String getGiaDV() {
         return GiaDV.getText();
+    }
+
+    public JButton getAddToCart_Btn() {
+        return AddToCart_Btn;
+    }
+
+    public void setAddToCart_Btn(JButton AddToCart_Btn) {
+        this.AddToCart_Btn = AddToCart_Btn;
     }
     
     /**
@@ -166,9 +174,7 @@ public class cardSanPham extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddToCart_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCart_BtnActionPerformed
-        if (orderPanel != null) {
-            orderPanel.addToOrderPanel(this);
-        }
+//        order.addToOrderPanel(Integer.parseInt(IdDV.getText()));
     }//GEN-LAST:event_AddToCart_BtnActionPerformed
 
 

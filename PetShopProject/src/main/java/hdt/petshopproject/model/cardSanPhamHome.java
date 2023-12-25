@@ -14,6 +14,17 @@ public class cardSanPhamHome {
     private String tenDV;
     private int giaDV;
     private int idDV;
+    private boolean trangThai;
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+    
+    
     
     public String getLoaiDV() {
         return loaiDV;
