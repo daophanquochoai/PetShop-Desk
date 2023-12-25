@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package hdt.petshopproject.form;
 
 import hdt.barchart.BarChart;
@@ -9,10 +6,6 @@ import hdt.chart.ModelChart;
 import java.awt.Color;
 import java.util.List;
 
-/**
- *
- * @author ADMIN
- */
 public class TabRevenue extends javax.swing.JPanel {
 
     BarChart barChart1= new BarChart();

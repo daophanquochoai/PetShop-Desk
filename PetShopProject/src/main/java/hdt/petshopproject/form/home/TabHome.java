@@ -9,6 +9,7 @@ import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
@@ -59,9 +60,6 @@ public class TabHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         Search_TextField = new javax.swing.JTextField();
@@ -71,13 +69,6 @@ public class TabHome extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         listSP = new javax.swing.JPanel();
         oder = new hdt.petshopproject.component.Oder();
-
-        jMenu1.setText("jMenu1");
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
 
         setBackground(new java.awt.Color(243, 239, 239));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -219,7 +210,9 @@ public class TabHome extends javax.swing.JPanel {
         String selectedLoai = (String) H_Combo.getSelectedItem();
         updateDataByLoai(selectedLoai);
     }
-
+    private void initFormListSanPham(int soLuong){
+        listSP.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
+    }
     private void updateDataByLoai(String loai) {
         cardSanPhamHome_List dao = new cardSanPhamHome_List();
         ArrayList<cardSanPhamHome> dataList = dao.loadDataByLoai(loai);
@@ -249,6 +242,7 @@ public class TabHome extends javax.swing.JPanel {
             });
             }
         }
+        initFormListSanPham(dataList.size());
     }
 
     private void searchByName() {
@@ -306,9 +300,6 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JButton Search_Btn;
     private javax.swing.JTextField Search_TextField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

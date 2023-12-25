@@ -32,6 +32,11 @@
         <version>1.5.2</version>
     </dependency>
         <!-- Thêm các dependencies khác nếu cần -->
+        <dependency>
+            <groupId>Chart</groupId>
+            <artifactId>BarChart</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
     
     <properties>
