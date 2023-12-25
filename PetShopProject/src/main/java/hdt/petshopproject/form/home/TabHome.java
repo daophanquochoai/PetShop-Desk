@@ -1,45 +1,51 @@
-
-package hdt.petshopproject.form.home;
+    package hdt.petshopproject.form.home;
 
 import hdt.petshopproject.DAO.cardSanPhamHome_List;
+import hdt.petshopproject.component.Oder;
 import hdt.petshopproject.model.cardSanPhamHome;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
-
 public class TabHome extends javax.swing.JPanel {
-    private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-    private int SoLuongCardSP;
-    List<cardSanPham> lsCardSP= new ArrayList<>();
+//    private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+    private final DefaultComboBoxModel<String> CbBox = new DefaultComboBoxModel<>();
+    
     public TabHome() {
         initComponents();
         ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
         sb.setForeground(new Color(130,130,130));
         jScrollPane1.setVerticalScrollBar(sb);
-//        initListSanPham(20);
+        
+        //Xóa chữ tìm kiếm trong JTextField ngay khi bấm vào
+        Search_TextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Xóa nội dung khi nhận focus
+                if (Search_TextField.getText().equals("Tìm kiếm theo tên")) {
+                    Search_TextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                
+            }
+        }
+        );
+        // init
         initCombo();
-//        cardSanPhamHome_List cardList = new cardSanPhamHome_List();
-//        listSanPham.add(cardList, BorderLayout.CENTER);
         initSanPham();
     }
     
-   
-//    private void initListSanPham(int soLuong){
-//        for( int i =0;i<soLuong;i++){
-//            lsCardSP.add(new cardSanPham());
-//            listSanPham.add(lsCardSP.get(i));
-//            
-//        }
-//        listSanPham.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
-//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -50,10 +56,10 @@ public class TabHome extends javax.swing.JPanel {
         jMenuItem2 = new javax.swing.JMenuItem();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        Search_TextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         H_Combo = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Search_Btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listSP = new javax.swing.JPanel();
         oder = new hdt.petshopproject.component.Oder();
@@ -75,11 +81,11 @@ public class TabHome extends javax.swing.JPanel {
 
         jPanel5.setOpaque(false);
 
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.setText("Tìm kiếm");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Search_TextField.setForeground(new java.awt.Color(51, 51, 51));
+        Search_TextField.setText("Tìm kiếm theo tên");
+        Search_TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Search_TextFieldActionPerformed(evt);
             }
         });
 
@@ -92,9 +98,14 @@ public class TabHome extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search/icons8-search-18(-ldpi).png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setOpaque(true);
+        Search_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Search/icons8-search-18(-ldpi).png"))); // NOI18N
+        Search_Btn.setContentAreaFilled(false);
+        Search_Btn.setOpaque(true);
+        Search_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Search_BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -102,9 +113,9 @@ public class TabHome extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(Search_Btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,10 +127,10 @@ public class TabHome extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(H_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -137,14 +148,17 @@ public class TabHome extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         oder.setMinimumSize(new java.awt.Dimension(360, 500));
@@ -156,62 +170,93 @@ public class TabHome extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(oder, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-                    .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(oder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    public void initCombo(){
+      
+    private void initCombo(){
         String sql = "select distinct Loai from hangHoa";
-        List<String> list = new ArrayList<>();
+        String tatCa = "Tất cả";
         try (
             Connection con = helper.openConnection(); 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);) {
-            model.removeAllElements();
+            CbBox.removeAllElements();
+            CbBox.addElement(tatCa);
             while (rs.next()) {
-               model.addElement(rs.getString("Loai"));
+               CbBox.addElement(rs.getString("Loai"));
             }
-            H_Combo.setModel(model);
+            H_Combo.setModel(CbBox);
         }
         catch( Exception e){
             System.out.print("Loi combo");
         }
+        H_Combo.addActionListener((java.awt.event.ActionEvent evt) -> {
+            H_ComboActionPerformed(evt);
+        });
     }
-    public void initSanPham(){
+    
+    private void initSanPham(){
+        String selectedLoai = (String) H_Combo.getSelectedItem();
+        updateDataByLoai(selectedLoai);
+    }
+    private void updateDataByLoai(String loai) {
         cardSanPhamHome_List dao = new cardSanPhamHome_List();
-        List<cardSanPhamHome> dataList = dao.loadDataFromSQL();
+        ArrayList<cardSanPhamHome> dataList = dao.loadDataByLoai(loai);
 
         for (cardSanPhamHome data : dataList) {
             cardSanPham cardSP = new cardSanPham(data.getIdDV(), data.getTenDV(), data.getGiaDV());
-//            ListSanPham listSanPham = new ListSanPham();
-////            listSanPham.setLoaiDV(data.getLoaiDV());
-//            listSanPham.add(cardSP, BorderLayout.CENTER);
-//            listSP.add(listSanPham);
             listSP.add(cardSP, BorderLayout.CENTER);
         }
     }
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    
+    private void searchByName() {
+        String searchText = Search_TextField.getText();
+        cardSanPhamHome_List dao = new cardSanPhamHome_List();
+        ArrayList<cardSanPhamHome> searchResults = dao.loadDataByName(searchText);
+        updateSearchResults(searchResults);
+    }
+    
+    private void updateSearchResults(ArrayList<cardSanPhamHome> searchResults) {
+        for (cardSanPhamHome result : searchResults) {
+            cardSanPham cardSP = new cardSanPham(result.getIdDV(), result.getTenDV(), result.getGiaDV());
+            listSP.add(cardSP, BorderLayout.CENTER);
+        }
+    }
+    
+    
+    private void Search_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_TextFieldActionPerformed
+        
+    }//GEN-LAST:event_Search_TextFieldActionPerformed
 
     private void H_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_H_ComboActionPerformed
-        // TODO add your handling code here:
+        listSP.removeAll();
+        String selectedLoai = (String) H_Combo.getSelectedItem();
+        updateDataByLoai(selectedLoai);
+        listSP.revalidate();
+        listSP.repaint();
     }//GEN-LAST:event_H_ComboActionPerformed
 
-    
+    private void Search_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_BtnActionPerformed
+        listSP.removeAll();
+        searchByName();
+        listSP.revalidate();
+        listSP.repaint();
+    }//GEN-LAST:event_Search_BtnActionPerformed
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> H_Combo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Search_Btn;
+    private javax.swing.JTextField Search_TextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -219,7 +264,6 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel listSP;
     private hdt.petshopproject.component.Oder oder;
     // End of variables declaration//GEN-END:variables

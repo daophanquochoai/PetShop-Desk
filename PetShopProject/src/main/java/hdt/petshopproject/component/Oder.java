@@ -1,28 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package hdt.petshopproject.component;
+import hdt.petshopproject.form.home.cardSanPham;
 import java.awt.Color;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.window.ThanhToan;
 import java.awt.Frame;
-/**
- *
- * @author ADMIN
- */
-public class Oder extends javax.swing.JPanel {
+import javax.swing.table.DefaultTableModel;
 
-    private ThanhToan thanhToan =new ThanhToan((Frame) getParent(),true);
+public class Oder extends javax.swing.JPanel {
+    private final DefaultTableModel tableModel;
+
+    private final ThanhToan thanhToan =new ThanhToan((Frame) getParent(),true);
     public Oder() {
         initComponents();
-        
+        tableModel = (DefaultTableModel) OrderTable.getModel();
     }
     public void setVerticalSB(javax.swing.JScrollPane jScrollPane,int width,int height,int size){
         ScrollBarCustom sb = new ScrollBarCustom(width,height,size);
         sb.setForeground(new Color(130,130,130));
         jScrollPane.setVerticalScrollBar(sb);
     }
+    
+    public void addToOrderPanel(cardSanPham card) {
+        int idDV = Integer.parseInt(card.getIdDV());
+        String tenDV = card.getTenDV();
+        int giaDV = Integer.parseInt(card.getGiaDV());
+        System.out.print(idDV);
+        System.out.print(tenDV);
+        System.out.print(giaDV);
+        tableModel.addRow(new Object[]{idDV, tenDV, giaDV});
+}
+    
+//    public void addOrder(int idDV, String tenDV, int giaDV) {
+//        tableModel.addRow(new Object[]{idDV, tenDV, giaDV});
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +66,7 @@ public class Oder extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        OrderTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -71,14 +83,11 @@ public class Oder extends javax.swing.JPanel {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("ORDER");
 
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Mã hóa đơn:");
 
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Tên khách hàng:");
 
         jTextField6.setEditable(false);
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField6.setText("000000000xx");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +96,6 @@ public class Oder extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Nhân viên:");
 
         jComboBox5.setForeground(new java.awt.Color(0, 0, 51));
@@ -138,10 +146,8 @@ public class Oder extends javax.swing.JPanel {
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 150));
         jPanel2.setOpaque(false);
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tổng:");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Khuyến mãi:");
 
         btnThanhToan.setBackground(new java.awt.Color(0, 153, 51));
@@ -170,11 +176,9 @@ public class Oder extends javax.swing.JPanel {
         btnHuyHD.setText("Hủy hóa đơn");
         btnHuyHD.setPreferredSize(new java.awt.Dimension(90, 25));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("-------------------");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Ghi chú:");
 
         setVerticalSB(jScrollPane3, 10,5,35);
@@ -184,14 +188,13 @@ public class Oder extends javax.swing.JPanel {
         jTextArea2.setText("\n\n\n");
         jScrollPane3.setViewportView(jTextArea2);
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Thành tiền:");
 
         jTextField5.setForeground(new java.awt.Color(51, 51, 51));
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField5.setText("000.000");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        OrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -210,21 +213,20 @@ public class Oder extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(51, 153, 255));
-        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 500));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(160);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
+        OrderTable.setGridColor(new java.awt.Color(51, 153, 255));
+        OrderTable.setMaximumSize(new java.awt.Dimension(2147483647, 500));
+        OrderTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        OrderTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(OrderTable);
+        if (OrderTable.getColumnModel().getColumnCount() > 0) {
+            OrderTable.getColumnModel().getColumn(0).setResizable(false);
+            OrderTable.getColumnModel().getColumn(0).setPreferredWidth(90);
+            OrderTable.getColumnModel().getColumn(1).setResizable(false);
+            OrderTable.getColumnModel().getColumn(1).setPreferredWidth(160);
+            OrderTable.getColumnModel().getColumn(2).setResizable(false);
+            OrderTable.getColumnModel().getColumn(2).setPreferredWidth(80);
         }
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Làm mới");
 
         jButton2.setBackground(new java.awt.Color(255, 51, 51));
@@ -344,6 +346,7 @@ public class Oder extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable OrderTable;
     private javax.swing.JButton btnHuyHD;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton jButton1;
@@ -363,7 +366,6 @@ public class Oder extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

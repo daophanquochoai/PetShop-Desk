@@ -1,15 +1,33 @@
 package hdt.petshopproject.form.home;
-public class cardSanPham extends javax.swing.JPanel {
 
-    public cardSanPham() {
-        initComponents();
-    }
+import hdt.petshopproject.component.Oder;
+
+public class cardSanPham extends javax.swing.JPanel {
+    Oder orderPanel = new Oder();
+
     public cardSanPham(int idDV,String tenDV, int giaDV) {
         initComponents();
         IdDV.setText(Integer.toString(idDV));
         TenDV.setText(tenDV);
         GiaDV.setText(Integer.toString(giaDV));
     }
+    
+    public cardSanPham(){
+        initComponents();
+    }
+    
+    public String getIdDV() {
+        return IdDV.getText();
+    }
+
+    public String getTenDV() {
+        return TenDV.getText();
+    }
+
+    public String getGiaDV() {
+        return GiaDV.getText();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -23,7 +41,7 @@ public class cardSanPham extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         GiaDV = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnThem = new javax.swing.JButton();
+        AddToCart_Btn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         IdDV = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -51,12 +69,12 @@ public class cardSanPham extends javax.swing.JPanel {
 
         jLabel11.setText("đ");
 
-        btnThem.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnThem.setForeground(new java.awt.Color(153, 0, 51));
-        btnThem.setText("+");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        AddToCart_Btn.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        AddToCart_Btn.setForeground(new java.awt.Color(153, 0, 51));
+        AddToCart_Btn.setText("+");
+        AddToCart_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                AddToCart_BtnActionPerformed(evt);
             }
         });
 
@@ -92,7 +110,7 @@ public class cardSanPham extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(IdDV, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(AddToCart_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +133,7 @@ public class cardSanPham extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
+                    .addComponent(AddToCart_Btn)
                     .addComponent(jLabel3)
                     .addComponent(IdDV))
                 .addContainerGap())
@@ -147,16 +165,18 @@ public class cardSanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThemActionPerformed
+    private void AddToCart_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCart_BtnActionPerformed
+        if (orderPanel != null) {
+            orderPanel.addToOrderPanel(this);
+        }
+    }//GEN-LAST:event_AddToCart_BtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddToCart_Btn;
     private javax.swing.JLabel GiaDV;
     private javax.swing.JLabel IdDV;
     private javax.swing.JLabel TenDV;
-    private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
