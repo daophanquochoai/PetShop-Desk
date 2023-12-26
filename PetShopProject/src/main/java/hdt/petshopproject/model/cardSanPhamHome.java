@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hdt.petshopproject.model;
 
 /**
@@ -23,8 +20,6 @@ public class cardSanPhamHome {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-    
     
     public String getLoaiDV() {
         return loaiDV;
@@ -56,6 +51,17 @@ public class cardSanPhamHome {
 
     public void setIdDV(int idDV) {
         this.idDV = idDV;
+    }
+
+    public cardSanPhamHome(String loaiDV, String tenDV, int giaDV, int idDV, boolean trangThai) {
+        this.loaiDV = loaiDV;
+        this.tenDV = tenDV;
+        this.giaDV = giaDV;
+        this.idDV = idDV;
+        this.trangThai = trangThai;
+    }
+    public cardSanPhamHome(){
+        
     }
 }
 

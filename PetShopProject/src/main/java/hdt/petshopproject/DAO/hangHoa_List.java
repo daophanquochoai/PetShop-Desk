@@ -6,6 +6,7 @@ import hdt.petshopproject.util.helper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -99,6 +100,7 @@ public class hangHoa_List {
                     hh.setGioiTinh(false);
                 }
                 hh.setNgNhap(rs.getString("ngNhap"));
+                
                 listHH.add(hh);
             }
             return listHH;
@@ -233,4 +235,12 @@ public class hangHoa_List {
             return pstm.executeUpdate() > 0;
         }
     }
+    
+        public boolean updateTable() throws Exception {
+            String sql = "UPDATE hangHoa SET trangThai = 0;";
+            try (Connection con = helper.openConnection();
+                Statement stmt = con.createStatement()) {
+                return stmt.executeUpdate(sql) > 0;
+            }
+        }
 }
