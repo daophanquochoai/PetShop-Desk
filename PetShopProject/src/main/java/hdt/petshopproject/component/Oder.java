@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Oder extends javax.swing.JPanel {
 
-    private final ThanhToan thanhToan =new ThanhToan((Frame) getParent(),true);
     public Oder() {
         initComponents();
     }
@@ -322,7 +321,8 @@ public class Oder extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-
+        ThanhToan thanhToan =new ThanhToan();
+        thanhToan.setVisible(true);
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
