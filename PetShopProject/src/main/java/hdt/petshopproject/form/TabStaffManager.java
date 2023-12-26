@@ -26,9 +26,10 @@ public class TabStaffManager extends javax.swing.JPanel {
             
     public TabStaffManager() {
         initComponents();
-        NV_table.setDefaultRenderer(Object.class, new TableGradientCell());
         initTable();
         fillTable();
+//        NV_table.setDefaultRenderer(Object.class, new TableGradientCell());
+//        NV_table.setDefaultEditor(Object.class, null);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,8 +91,10 @@ public class TabStaffManager extends javax.swing.JPanel {
         NV_sxTen = new javax.swing.JButton();
         NV_sxID = new javax.swing.JButton();
 
+        themNhanVien.setAlwaysOnTop(true);
         themNhanVien.setMinimumSize(new java.awt.Dimension(650, 400));
         themNhanVien.setModal(true);
+        themNhanVien.setLocationRelativeTo(null);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -262,8 +265,10 @@ public class TabStaffManager extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
+        capNhat.setAlwaysOnTop(true);
         capNhat.setMinimumSize(new java.awt.Dimension(650, 400));
         capNhat.setModal(true);
+        capNhat.setLocationRelativeTo(null);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -454,11 +459,20 @@ public class TabStaffManager extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        NV_table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        NV_table.setMaximumSize(new java.awt.Dimension(2147483647, 1000));
         NV_table.setRowHeight(25);
         NV_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         NV_table.getTableHeader().setReorderingAllowed(false);
@@ -468,6 +482,18 @@ public class TabStaffManager extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(NV_table);
+        if (NV_table.getColumnModel().getColumnCount() > 0) {
+            NV_table.getColumnModel().getColumn(0).setResizable(false);
+            NV_table.getColumnModel().getColumn(1).setResizable(false);
+            NV_table.getColumnModel().getColumn(2).setResizable(false);
+            NV_table.getColumnModel().getColumn(3).setResizable(false);
+            NV_table.getColumnModel().getColumn(4).setResizable(false);
+            NV_table.getColumnModel().getColumn(5).setResizable(false);
+            NV_table.getColumnModel().getColumn(6).setResizable(false);
+        }
+        NV_table.setDefaultRenderer(Object.class, new TableGradientCell());
+
+        NV_table.setDefaultEditor(Object.class, null);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(658, 120));
 

@@ -4,11 +4,15 @@
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="themThuCung">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[575, 325]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="themThuCung.setLocationRelativeTo(null);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -227,9 +231,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="HH_T_Nam">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup2"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1ef1;c"/>
               </Properties>
               <Events>
@@ -238,9 +239,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="HH_T_Cai">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup2"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="C&#xe1;i"/>
               </Properties>
               <Events>
@@ -303,11 +301,15 @@
     </Container>
     <Container class="javax.swing.JDialog" name="capNhat">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[650, 400]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="capNhat.setLocationRelativeTo(null);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -534,9 +536,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="HH_C_Nam">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1ef1;c"/>
               </Properties>
               <Events>
@@ -545,9 +544,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="HH_C_Cai">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="C&#xe1;i"/>
               </Properties>
             </Component>
@@ -611,15 +607,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
-    </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
-    </Component>
   </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -675,7 +662,7 @@
                 <Column editable="false" title="Chi ti&#x1ebf;t" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="HH_table.setDefaultRenderer(Object.class, new TableGradientCell());&#xa;&#xa;HH_table.setDefaultEditor(Object.class, null);">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
                   <Title/>

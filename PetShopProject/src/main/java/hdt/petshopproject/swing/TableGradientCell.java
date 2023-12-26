@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class TableGradientCell extends DefaultTableCellRenderer{
     
     public TableGradientCell(){
-        this(Color.decode("#FC466B"), Color.decode("#3F5EFB"));
+        this(Color.decode("#154360"), Color.decode("#85C1E9"));
     }
     
     public TableGradientCell(Color color1, Color color2)
