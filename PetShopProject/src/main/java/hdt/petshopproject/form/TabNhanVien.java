@@ -732,6 +732,7 @@ public class TabNhanVien extends javax.swing.JDialog {
             capNhat.setVisible(false);
             fillTable();
             JOptionPane.showMessageDialog(this, "Cập nhật thành công!!");
+            
         }
         catch( Exception e){
             JOptionPane.showMessageDialog(this, "Lỗi cập nhật!!");

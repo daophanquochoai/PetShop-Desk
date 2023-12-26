@@ -31,13 +31,13 @@ public final class run extends javax.swing.JFrame {
         initFirst();  
     }
     
-    public run(String idAccount,String nameAccount){
+    public run(String nameAccount, String idAccount){
         initComponents();
         initFirst();
         lbNameAccount.setText(nameAccount);
         btnIdAccount.setText("ID : " + idAccount);
         tabHome.setlabelwithID(idAccount);
-        idAaccount=nameAccount;
+        idAaccount=idAccount;
         nameAccout=nameAccount;
         CheckAdmin(idAccount);
     }
@@ -652,6 +652,7 @@ public final class run extends javax.swing.JFrame {
         // TODO add your handling code here:
         bRevenue.setForeground(new Color(0,153,204));
         pRevenue.setOpaque(true);
+        
         showForm(tabRevenue,5);
     }//GEN-LAST:event_bRevenueActionPerformed
 
@@ -665,6 +666,7 @@ public final class run extends javax.swing.JFrame {
     private void bHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHomeActionPerformed
         bHome.setForeground(new Color(0,153,204));
         pHome.setOpaque(true);
+        tabHome.setlabelwithID(idAaccount);
         showForm(tabHome,1);
     }//GEN-LAST:event_bHomeActionPerformed
 
