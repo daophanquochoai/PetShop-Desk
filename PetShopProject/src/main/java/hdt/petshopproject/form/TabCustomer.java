@@ -2,6 +2,7 @@ package hdt.petshopproject.form;
 
 import hdt.petshopproject.DAO.khachHang_List;
 import hdt.petshopproject.model.Customer;
+import hdt.petshopproject.swing.TableGradientCell;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -21,7 +22,14 @@ public class TabCustomer extends javax.swing.JPanel {
         initComponents();
         initTable();
         fillTable();
+        
+        CT_table.setDefaultEditor(Object.class, null);
 
+    }
+    private void initTable() {
+        String[] header = new String[]{"ID", "Họ và tên", "Số điện thoại", "Địa chỉ", "Chi tiết"};
+        tblModel.setColumnIdentifiers(header);
+        CT_table.setModel(tblModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -51,7 +59,6 @@ public class TabCustomer extends javax.swing.JPanel {
         CT_C_Luu = new javax.swing.JButton();
         HH_T_xoa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         CT_table = new javax.swing.JTable();
@@ -64,9 +71,12 @@ public class TabCustomer extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
+        themKhachHang.setAlwaysOnTop(true);
         themKhachHang.setMinimumSize(new java.awt.Dimension(650, 400));
         themKhachHang.setModal(true);
+        themKhachHang.setLocationRelativeTo(null);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setText("Tên :");
@@ -91,7 +101,7 @@ public class TabCustomer extends javax.swing.JPanel {
             }
         });
 
-        CT_T_Luu.setBackground(new java.awt.Color(153, 255, 153));
+        CT_T_Luu.setBackground(new java.awt.Color(102, 255, 0));
         CT_T_Luu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CT_T_Luu.setForeground(new java.awt.Color(255, 255, 255));
         CT_T_Luu.setText("Lưu");
@@ -102,6 +112,7 @@ public class TabCustomer extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nhập thông tin Khách Hàng");
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -172,8 +183,10 @@ public class TabCustomer extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        updateKH.setAlwaysOnTop(true);
         updateKH.setMinimumSize(new java.awt.Dimension(650, 400));
         updateKH.setModal(true);
+        updateKH.setLocationRelativeTo(null);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -308,56 +321,7 @@ public class TabCustomer extends javax.swing.JPanel {
 
         CT_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Họ và tên", "Số điện thoại", "Địa chỉ", "Chi tiết"
@@ -373,6 +337,7 @@ public class TabCustomer extends javax.swing.JPanel {
         });
         CT_table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         CT_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CT_table.setRowHeight(25);
         CT_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         CT_table.getTableHeader().setReorderingAllowed(false);
         CT_table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -385,12 +350,15 @@ public class TabCustomer extends javax.swing.JPanel {
             CT_table.getColumnModel().getColumn(0).setResizable(false);
             CT_table.getColumnModel().getColumn(1).setResizable(false);
             CT_table.getColumnModel().getColumn(2).setResizable(false);
+            CT_table.getColumnModel().getColumn(3).setResizable(false);
             CT_table.getColumnModel().getColumn(4).setResizable(false);
         }
+        CT_table.setDefaultRenderer(Object.class, new TableGradientCell());
+        CT_table.setDefaultEditor(Object.class, null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 100));
-        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 100));
 
         CT_combo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -667,7 +635,19 @@ public class TabCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_CT_tableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        List<Customer> lstKH = new ArrayList<>();
+        try {
+            khachHang_List dao = new khachHang_List();
+
+            lstKH = dao.findByTen(CT_inputTK.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Không tìm kiếm được!!");
+        }
+        tblModel.setRowCount(0);
+        for (Customer kh : lstKH) {
+            tblModel.addRow(new String[]{String.valueOf(kh.getID()), kh.getHoVaTen(), kh.getSdt(), kh.getDiaChi(), "--"});
+        }
+        tblModel.fireTableDataChanged();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CT_LMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CT_LMMouseClicked
@@ -676,11 +656,6 @@ public class TabCustomer extends javax.swing.JPanel {
         CT_combo.setSelectedIndex(0);
     }//GEN-LAST:event_CT_LMMouseClicked
 
-    private void initTable() {
-        String[] header = new String[]{"ID", "Họ và tên", "Số điện thoại", "Địa chỉ", "Chi tiết"};
-        tblModel.setColumnIdentifiers(header);
-        CT_table.setModel(tblModel);
-    }
 
     private void fillTable() {
         List<Customer> lstKH = new ArrayList<>();
@@ -731,7 +706,6 @@ public class TabCustomer extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog themKhachHang;
     private javax.swing.JDialog updateKH;

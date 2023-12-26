@@ -4,34 +4,47 @@ import java.awt.Component;
 import hdt.petshopproject.form.TabBill;
 import hdt.petshopproject.form.TabCustomer;
 import hdt.petshopproject.form.home.TabHome;
+<<<<<<< HEAD
+=======
+import hdt.petshopproject.form.TabRevenue;
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
 import hdt.petshopproject.form.TabStaffManager;
 import hdt.petshopproject.form.TabStock;
 import hdt.petshopproject.util.helper;
-import hdt.petshopproject.window.ThanhToan;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.util.EventListener;
+import javax.swing.ImageIcon;
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
 import javax.swing.JOptionPane;
 
 
 public final class run extends javax.swing.JFrame {
+    private int tabNumber=1;
+    private String idAaccount="";
+    private String nameAccout="";
+    
+    private final TabCustomer tabCustomer = new TabCustomer();
+    private final TabHome tabHome = new TabHome();
+    private final TabBill tabBill = new TabBill();
+    private final TabStock tabStock = new TabStock();
+    private final TabRevenue tabRevenue = new TabRevenue();
+    private final TabStaffManager tabNhanvien = new TabStaffManager();
 
 
     public run() {
         initComponents();
-        initFirst();
-       
-//        ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
-//        sb.setForeground(new Color(130,130,130));
-//        jScrollPane1.setVerticalScrollBar(sb);
-
-//        scaleImage(35,36,"C:\\Code\\Java\\Java_Doan\\PetShop\\icon\\home-225.png");
-        
+        initFirst();  
     }
-    public run(String acc,String id){
+    
+    public run(String nameAccount, String idAccount){
         initComponents();
         initFirst();
+<<<<<<< HEAD
         lbNameAccount.setText(acc);
         btnIdAccount.setText("ID : " + id);
 //        tabHome.setlabelwithID(id);
@@ -39,20 +52,32 @@ public final class run extends javax.swing.JFrame {
         accoutPwd=id;
         CheckAdmin(id);
         
+=======
+        lbNameAccount.setText(nameAccount);
+        btnIdAccount.setText("ID : " + idAccount);
+        tabHome.setlabelwithID(idAccount);
+        idAaccount=idAccount;
+        nameAccout=nameAccount;
+        CheckAdmin(idAccount);
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     }
+    
     public void initFirst(){
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         showForm(tabHome,1);
+        bHome.setForeground(new Color(0,153,204));
+        setIconImage(new ImageIcon(getClass().getResource("/icon/home2.png")).getImage());
     }
+    
     public void scaleImage(javax.swing.JButton button,int width,int heigth, String link){
         javax.swing.ImageIcon icon=new javax.swing.ImageIcon(link);
         java.awt.Image tmp = icon.getImage();
-        //java.awt.Image.SCALE_SMOOTH
         tmp=tmp.getScaledInstance(width, heigth,java.awt.Image.SCALE_REPLICATE  );
         icon= new javax.swing.ImageIcon(tmp);
         
     }
+    
     private void CheckAdmin(String id){
         String sql = "Select taiKhoan from nhanVien where ID=? and admin='True'";
         try {  
@@ -71,17 +96,59 @@ public final class run extends javax.swing.JFrame {
         }
         
     }
+ 
+        private void showForm(Component com,int index){
+//        int index=1;
+        if(index!=tabNumber){
+        switch( tabNumber){
+                case 1:
+                    bHome.setForeground(new Color(255,255,255));
+                    pHome.setOpaque(false);
+                    break;
+                case 2:
+                    bBill.setForeground(new Color(255,255,255));
+                    pBill.setOpaque(false);
+                    break;   
+                case 3:
+                    bCustomer.setForeground(new Color(255,255,255));
+                    pCustomer.setOpaque(false);
+                    break;   
+                case 4:
+                    bStock.setForeground(new Color(255,255,255));
+                    pStock.setOpaque(false);
+                    break;   
+                case 5:
+                    bRevenue.setForeground(new Color(255,255,255));
+                    pRevenue.setOpaque(false);
+                     break;               
+                case 6:
+                    bSetting.setForeground(new Color(255,255,255));
+                    pEmployee.setOpaque(false);
+                    break;
+                case 7:
+                    break;
+                default:
+                    break;
+            }
+            this.tabNumber=index;   
+        }
+        mutiTab.removeAll();
+        mutiTab.add(com);
+        mutiTab.revalidate();
+        mutiTab.repaint();
+    }
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         main = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
-        btnIdAccount = new javax.swing.JButton();
         btnAvtAccount = new javax.swing.JButton();
-        lbNameAccount = new javax.swing.JLabel();
         shopName = new javax.swing.JLabel();
         Logo = new javax.swing.JButton();
+        btnIdAccount = new javax.swing.JButton();
+        lbNameAccount = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -95,13 +162,15 @@ public final class run extends javax.swing.JFrame {
         bStock = new javax.swing.JButton();
         pRevenue = new javax.swing.JPanel();
         bRevenue = new javax.swing.JButton();
-        pSetting = new javax.swing.JPanel();
+        pEmployee = new javax.swing.JPanel();
         bSetting = new javax.swing.JButton();
+        pLogout = new javax.swing.JPanel();
+        bLogout = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         mutiTab = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pet Shop");
+        setTitle("PetShop");
         setBackground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(600, 500));
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -112,10 +181,30 @@ public final class run extends javax.swing.JFrame {
 
         main.setLayout(new java.awt.BorderLayout());
 
-        header.setBackground(new java.awt.Color(8, 35, 62));
+        header.setBackground(new java.awt.Color(15, 45, 75));
         header.setEnabled(false);
         header.setMinimumSize(new java.awt.Dimension(100, 60));
         header.setPreferredSize(new java.awt.Dimension(100, 60));
+
+        btnAvtAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user_1.png"))); // NOI18N
+        btnAvtAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvtAccountActionPerformed(evt);
+            }
+        });
+
+        shopName.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        shopName.setForeground(new java.awt.Color(220, 220, 20));
+        shopName.setText("PetShop");
+
+        Logo.setBackground(new java.awt.Color(13, 61, 110));
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/petshop (1).png"))); // NOI18N
+        Logo.setContentAreaFilled(false);
+        Logo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoActionPerformed(evt);
+            }
+        });
 
         btnIdAccount.setBackground(new java.awt.Color(0, 0, 0));
         btnIdAccount.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
@@ -129,23 +218,10 @@ public final class run extends javax.swing.JFrame {
             }
         });
 
-        btnAvtAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvtAccountActionPerformed(evt);
-            }
-        });
-
         lbNameAccount.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         lbNameAccount.setForeground(new java.awt.Color(245, 245, 245));
         lbNameAccount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbNameAccount.setText("TÊN TÀI KHOẢN   ");
-
-        shopName.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        shopName.setForeground(new java.awt.Color(220, 220, 20));
-        shopName.setText("PetShop");
-
-        Logo.setBackground(new java.awt.Color(13, 61, 110));
-        Logo.setText("Logo");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -156,35 +232,41 @@ public final class run extends javax.swing.JFrame {
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shopName, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 625, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNameAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIdAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAvtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(8, 8, 8))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(shopName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAvtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(lbNameAccount)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnIdAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(shopName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(headerLayout.createSequentialGroup()
+                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(headerLayout.createSequentialGroup()
+                                        .addComponent(lbNameAccount)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(btnIdAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnAvtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         main.add(header, java.awt.BorderLayout.PAGE_START);
 
-        body.setBackground(new java.awt.Color(0, 0, 0));
+        body.setBackground(new java.awt.Color(10, 10, 10));
         body.setLayout(new javax.swing.BoxLayout(body, javax.swing.BoxLayout.LINE_AXIS));
 
         menu.setBackground(new java.awt.Color(10, 10, 10));
@@ -194,7 +276,7 @@ public final class run extends javax.swing.JFrame {
         menu.setOpaque(false);
         menu.setPreferredSize(new java.awt.Dimension(210, 300));
         menu.setVerifyInputWhenFocusTarget(false);
-        menu.setLayout(new javax.swing.BoxLayout(menu, javax.swing.BoxLayout.PAGE_AXIS));
+        menu.setLayout(new javax.swing.BoxLayout(menu, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(210, 50));
         jPanel1.setMinimumSize(new java.awt.Dimension(210, 50));
@@ -214,18 +296,26 @@ public final class run extends javax.swing.JFrame {
 
         menu.add(jPanel1);
 
-        pHome.setBackground(new java.awt.Color(25, 25, 25));
-        pHome.setMaximumSize(new java.awt.Dimension(210, 45));
-        pHome.setMinimumSize(new java.awt.Dimension(100, 45));
+        pHome.setBackground(new java.awt.Color(30, 30, 30));
+        pHome.setMaximumSize(new java.awt.Dimension(210, 50));
+        pHome.setMinimumSize(new java.awt.Dimension(210, 50));
         pHome.setOpaque(false);
-        pHome.setPreferredSize(new java.awt.Dimension(210, 45));
+        pHome.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bHome.setBackground(new java.awt.Color(20, 20, 20));
-        bHome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bHome.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
         bHome.setForeground(new java.awt.Color(255, 255, 255));
+        bHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/home.png"))); // NOI18N
         bHome.setText("Trang chủ");
         bHome.setToolTipText("");
         bHome.setContentAreaFilled(false);
+        bHome.setDisabledIcon(null);
+        bHome.setDisabledSelectedIcon(null);
+        bHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bHome.setIconTextGap(10);
+        bHome.setMaximumSize(new java.awt.Dimension(210, 50));
+        bHome.setMinimumSize(new java.awt.Dimension(210, 50));
+        bHome.setPreferredSize(new java.awt.Dimension(210, 50));
         bHome.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 bHomeMouseMoved(evt);
@@ -246,27 +336,32 @@ public final class run extends javax.swing.JFrame {
         pHome.setLayout(pHomeLayout);
         pHomeLayout.setHorizontalGroup(
             pHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bHome, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(bHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pHomeLayout.setVerticalGroup(
             pHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bHome, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addGroup(pHomeLayout.createSequentialGroup()
+                .addComponent(bHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menu.add(pHome);
 
-        pBill.setBackground(new java.awt.Color(25, 25, 25));
-        pBill.setMaximumSize(new java.awt.Dimension(210, 45));
-        pBill.setMinimumSize(new java.awt.Dimension(100, 45));
+        pBill.setBackground(new java.awt.Color(30, 30, 30));
+        pBill.setMaximumSize(new java.awt.Dimension(210, 50));
+        pBill.setMinimumSize(new java.awt.Dimension(210, 50));
         pBill.setOpaque(false);
-        pBill.setPreferredSize(new java.awt.Dimension(210, 45));
+        pBill.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bBill.setBackground(new java.awt.Color(20, 20, 20));
-        bBill.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bBill.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bBill.setForeground(new java.awt.Color(255, 255, 255));
+        bBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/invoice.png"))); // NOI18N
         bBill.setText("Hóa đơn");
         bBill.setToolTipText("");
         bBill.setContentAreaFilled(false);
+        bBill.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bBill.setIconTextGap(10);
         bBill.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 bBillMouseMoved(evt);
@@ -291,22 +386,25 @@ public final class run extends javax.swing.JFrame {
         );
         pBillLayout.setVerticalGroup(
             pBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bBill, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bBill, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         menu.add(pBill);
 
-        pCustomer.setBackground(new java.awt.Color(25, 25, 25));
-        pCustomer.setMaximumSize(new java.awt.Dimension(210, 45));
-        pCustomer.setMinimumSize(new java.awt.Dimension(100, 45));
+        pCustomer.setBackground(new java.awt.Color(30, 30, 30));
+        pCustomer.setMaximumSize(new java.awt.Dimension(210, 50));
+        pCustomer.setMinimumSize(new java.awt.Dimension(210, 50));
         pCustomer.setOpaque(false);
-        pCustomer.setPreferredSize(new java.awt.Dimension(210, 45));
+        pCustomer.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bCustomer.setBackground(new java.awt.Color(20, 20, 20));
-        bCustomer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bCustomer.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        bCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/customer.png"))); // NOI18N
         bCustomer.setText("Khách hàng");
         bCustomer.setContentAreaFilled(false);
+        bCustomer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bCustomer.setIconTextGap(10);
         bCustomer.setMaximumSize(new java.awt.Dimension(200, 40));
         bCustomer.setPreferredSize(new java.awt.Dimension(200, 40));
         bCustomer.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -333,23 +431,26 @@ public final class run extends javax.swing.JFrame {
         );
         pCustomerLayout.setVerticalGroup(
             pCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         menu.add(pCustomer);
 
-        pStock.setBackground(new java.awt.Color(25, 25, 25));
+        pStock.setBackground(new java.awt.Color(30, 30, 30));
         pStock.setForeground(new java.awt.Color(255, 255, 255));
-        pStock.setMaximumSize(new java.awt.Dimension(210, 45));
-        pStock.setMinimumSize(new java.awt.Dimension(100, 45));
+        pStock.setMaximumSize(new java.awt.Dimension(210, 50));
+        pStock.setMinimumSize(new java.awt.Dimension(210, 50));
         pStock.setOpaque(false);
-        pStock.setPreferredSize(new java.awt.Dimension(210, 45));
+        pStock.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bStock.setBackground(new java.awt.Color(20, 20, 20));
-        bStock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bStock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bStock.setForeground(new java.awt.Color(255, 255, 255));
+        bStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/warehouse.png"))); // NOI18N
         bStock.setText("Kho");
         bStock.setContentAreaFilled(false);
+        bStock.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bStock.setIconTextGap(10);
         bStock.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 bStockMouseMoved(evt);
@@ -374,22 +475,25 @@ public final class run extends javax.swing.JFrame {
         );
         pStockLayout.setVerticalGroup(
             pStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bStock, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bStock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         menu.add(pStock);
 
         pRevenue.setBackground(new java.awt.Color(25, 25, 25));
-        pRevenue.setMaximumSize(new java.awt.Dimension(210, 45));
-        pRevenue.setMinimumSize(new java.awt.Dimension(100, 45));
+        pRevenue.setMaximumSize(new java.awt.Dimension(210, 50));
+        pRevenue.setMinimumSize(new java.awt.Dimension(210, 50));
         pRevenue.setOpaque(false);
-        pRevenue.setPreferredSize(new java.awt.Dimension(210, 45));
+        pRevenue.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bRevenue.setBackground(new java.awt.Color(20, 20, 20));
-        bRevenue.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bRevenue.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bRevenue.setForeground(new java.awt.Color(255, 255, 255));
+        bRevenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/increase.png"))); // NOI18N
         bRevenue.setText("Doanh thu");
         bRevenue.setContentAreaFilled(false);
+        bRevenue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bRevenue.setIconTextGap(10);
         bRevenue.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 bRevenueMouseMoved(evt);
@@ -414,23 +518,26 @@ public final class run extends javax.swing.JFrame {
         );
         pRevenueLayout.setVerticalGroup(
             pRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         menu.add(pRevenue);
 
-        pSetting.setBackground(new java.awt.Color(25, 25, 25));
-        pSetting.setForeground(new java.awt.Color(255, 255, 255));
-        pSetting.setMaximumSize(new java.awt.Dimension(210, 45));
-        pSetting.setMinimumSize(new java.awt.Dimension(100, 45));
-        pSetting.setOpaque(false);
-        pSetting.setPreferredSize(new java.awt.Dimension(210, 45));
+        pEmployee.setBackground(new java.awt.Color(30, 30, 30));
+        pEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        pEmployee.setMaximumSize(new java.awt.Dimension(210, 50));
+        pEmployee.setMinimumSize(new java.awt.Dimension(210, 50));
+        pEmployee.setOpaque(false);
+        pEmployee.setPreferredSize(new java.awt.Dimension(210, 50));
 
         bSetting.setBackground(new java.awt.Color(20, 20, 20));
-        bSetting.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bSetting.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         bSetting.setForeground(new java.awt.Color(255, 255, 255));
+        bSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/team.png"))); // NOI18N
         bSetting.setText("Nhân viên");
         bSetting.setContentAreaFilled(false);
+        bSetting.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bSetting.setIconTextGap(10);
         bSetting.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 bSettingMouseMoved(evt);
@@ -447,18 +554,64 @@ public final class run extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pSettingLayout = new javax.swing.GroupLayout(pSetting);
-        pSetting.setLayout(pSettingLayout);
-        pSettingLayout.setHorizontalGroup(
-            pSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pEmployeeLayout = new javax.swing.GroupLayout(pEmployee);
+        pEmployee.setLayout(pEmployeeLayout);
+        pEmployeeLayout.setHorizontalGroup(
+            pEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(bSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
-        pSettingLayout.setVerticalGroup(
-            pSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+        pEmployeeLayout.setVerticalGroup(
+            pEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        menu.add(pSetting);
+        menu.add(pEmployee);
+
+        pLogout.setBackground(new java.awt.Color(30, 30, 30));
+        pLogout.setMaximumSize(new java.awt.Dimension(210, 50));
+        pLogout.setMinimumSize(new java.awt.Dimension(210, 50));
+        pLogout.setOpaque(false);
+        pLogout.setPreferredSize(new java.awt.Dimension(210, 50));
+
+        bLogout.setBackground(new java.awt.Color(20, 20, 20));
+        bLogout.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        bLogout.setForeground(new java.awt.Color(255, 255, 255));
+        bLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout.png"))); // NOI18N
+        bLogout.setText("Đăng xuất");
+        bLogout.setContentAreaFilled(false);
+        bLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bLogout.setIconTextGap(10);
+        bLogout.setMaximumSize(new java.awt.Dimension(210, 50));
+        bLogout.setMinimumSize(new java.awt.Dimension(210, 50));
+        bLogout.setPreferredSize(new java.awt.Dimension(210, 50));
+        bLogout.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                bLogoutMouseMoved(evt);
+            }
+        });
+        bLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bLogoutMouseExited(evt);
+            }
+        });
+        bLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLogoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pLogoutLayout = new javax.swing.GroupLayout(pLogout);
+        pLogout.setLayout(pLogoutLayout);
+        pLogoutLayout.setHorizontalGroup(
+            pLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pLogoutLayout.setVerticalGroup(
+            pLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        menu.add(pLogout);
 
         jPanel9.setOpaque(false);
         jPanel9.setPreferredSize(new java.awt.Dimension(200, 390));
@@ -467,11 +620,11 @@ public final class run extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGap(0, 155, Short.MAX_VALUE)
         );
 
         menu.add(jPanel9);
@@ -489,19 +642,18 @@ public final class run extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
-        //setExtendedState(MAXIMIZED_BOTH);
+
         
     }//GEN-LAST:event_formComponentResized
 
@@ -528,26 +680,25 @@ public final class run extends javax.swing.JFrame {
         // TODO add your handling code here:
         bRevenue.setForeground(new Color(0,153,204));
         pRevenue.setOpaque(true);
+<<<<<<< HEAD
 //        showForm(tabRevenue,5);
+=======
+        
+        showForm(tabRevenue,5);
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     }//GEN-LAST:event_bRevenueActionPerformed
 
     private void bSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSettingActionPerformed
         // TODO add your handling code here:
         bSetting.setForeground(new Color(0,153,204));
-        pSetting.setOpaque(true);
+        pEmployee.setOpaque(true);
         showForm(tabNhanvien,6);
     }//GEN-LAST:event_bSettingActionPerformed
-
-    private void btnIdAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdAccountActionPerformed
-        // TODO add your handling code here:
-//        tabNhanVien.setLocationRelativeTo(null);
-//        tabNhanVien.setVisible(true);
-
-    }//GEN-LAST:event_btnIdAccountActionPerformed
 
     private void bHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHomeActionPerformed
         bHome.setForeground(new Color(0,153,204));
         pHome.setOpaque(true);
+        tabHome.setlabelwithID(idAaccount);
         showForm(tabHome,1);
     }//GEN-LAST:event_bHomeActionPerformed
 
@@ -602,47 +753,32 @@ public final class run extends javax.swing.JFrame {
     private void btnAvtAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvtAccountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAvtAccountActionPerformed
-    private void showForm(Component com,int index){
-//        int index=1;
-        if(index!=tabNumber){
-        switch( tabNumber){
-                case 1:
-                    bHome.setForeground(new Color(255,255,255));
-                    pHome.setOpaque(false);
-                    break;
-                case 2:
-                    bBill.setForeground(new Color(255,255,255));
-                    pBill.setOpaque(false);
-                    break;   
-                case 3:
-                    bCustomer.setForeground(new Color(255,255,255));
-                    pCustomer.setOpaque(false);
-                    break;   
-                case 4:
-                    bStock.setForeground(new Color(255,255,255));
-                    pStock.setOpaque(false);
-                    break;   
-                case 5:
-                    bRevenue.setForeground(new Color(255,255,255));
-                    pRevenue.setOpaque(false);
-                     break;               
-                case 6:
-                    bSetting.setForeground(new Color(255,255,255));
-                    pSetting.setOpaque(false);
-                    break;
-                default:
-                    break;
-            }
-            this.tabNumber=index;   
-        }
-        mutiTab.removeAll();
-        mutiTab.add(com);
-        mutiTab.revalidate();
-        mutiTab.repaint();
-    }
-    /**
-     * @param args the command line arguments
-     */
+
+    private void bLogoutMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseMoved
+        bLogout.setOpaque(true);
+    }//GEN-LAST:event_bLogoutMouseMoved
+
+    private void bLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseExited
+        bLogout.setOpaque(false);
+    }//GEN-LAST:event_bLogoutMouseExited
+
+    private void bLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogoutActionPerformed
+
+        this.setVisible(false);
+        new TabLogin().setVisible(true);
+    }//GEN-LAST:event_bLogoutActionPerformed
+
+    private void btnIdAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdAccountActionPerformed
+        // TODO add your handling code here:
+        //        tabNhanVien.setLocationRelativeTo(null);
+        //        tabNhanVien.setVisible(true);
+    }//GEN-LAST:event_btnIdAccountActionPerformed
+
+    private void LogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoActionPerformed
+       
+    }//GEN-LAST:event_LogoActionPerformed
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -673,6 +809,14 @@ public final class run extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -682,6 +826,7 @@ public final class run extends javax.swing.JFrame {
         });
     }
             // TODO add your handling code here:
+<<<<<<< HEAD
     private String accountID="";
     private String accoutPwd="";
     private ThanhToan thanhToan = new ThanhToan(this,rootPaneCheckingEnabled);
@@ -694,11 +839,16 @@ public final class run extends javax.swing.JFrame {
     private final TabStaffManager tabNhanvien = new TabStaffManager();
     
     private int tabNumber=1;
+=======
+
+
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Logo;
     private javax.swing.JButton bBill;
     private javax.swing.JButton bCustomer;
     private javax.swing.JButton bHome;
+    private javax.swing.JButton bLogout;
     private javax.swing.JButton bRevenue;
     private javax.swing.JButton bSetting;
     private javax.swing.JButton bStock;
@@ -714,9 +864,10 @@ public final class run extends javax.swing.JFrame {
     private javax.swing.JPanel mutiTab;
     private javax.swing.JPanel pBill;
     private javax.swing.JPanel pCustomer;
+    private javax.swing.JPanel pEmployee;
     private javax.swing.JPanel pHome;
+    private javax.swing.JPanel pLogout;
     private javax.swing.JPanel pRevenue;
-    private javax.swing.JPanel pSetting;
     private javax.swing.JPanel pStock;
     private javax.swing.JLabel shopName;
     // End of variables declaration//GEN-END:variables

@@ -2,6 +2,7 @@ package hdt.petshopproject.form;
 
 import hdt.petshopproject.DAO.hangHoa_List;
 import hdt.petshopproject.model.hangHoa;
+import hdt.petshopproject.swing.TableGradientCell;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -21,11 +22,13 @@ public class TabStock extends javax.swing.JPanel {
 
     public TabStock() {
         initComponents();
+        initTable();
+        fillTable();
+        
         ScrollBarCustom sb = new ScrollBarCustom(10, 10, 100);
         sb.setForeground(new Color(130, 130, 130));
         jScrollPane1.setVerticalScrollBar(sb);
-        initTable();
-        fillTable();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -72,9 +75,6 @@ public class TabStock extends javax.swing.JPanel {
         HH_C_chiTiet = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         HH_table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -86,8 +86,10 @@ public class TabStock extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        themThuCung.setAlwaysOnTop(true);
         themThuCung.setMinimumSize(new java.awt.Dimension(575, 325));
         themThuCung.setModal(true);
+        themThuCung.setLocationRelativeTo(null);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -130,7 +132,6 @@ public class TabStock extends javax.swing.JPanel {
 
         jLabel10.setText("Giới tính:");
 
-        buttonGroup2.add(HH_T_Nam);
         HH_T_Nam.setText("Đực");
         HH_T_Nam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +139,6 @@ public class TabStock extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup2.add(HH_T_Cai);
         HH_T_Cai.setText("Cái");
         HH_T_Cai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,8 +277,10 @@ public class TabStock extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        capNhat.setAlwaysOnTop(true);
         capNhat.setMinimumSize(new java.awt.Dimension(650, 400));
         capNhat.setModal(true);
+        capNhat.setLocationRelativeTo(null);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -318,7 +320,6 @@ public class TabStock extends javax.swing.JPanel {
 
         jLabel15.setText("Giới tính");
 
-        buttonGroup1.add(HH_C_Nam);
         HH_C_Nam.setText("Đực");
         HH_C_Nam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,7 +327,6 @@ public class TabStock extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(HH_C_Cai);
         HH_C_Cai.setText("Cái");
 
         HH_C_ngayNhap.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -466,8 +466,6 @@ public class TabStock extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTextField1.setText("jTextField1");
-
         HH_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -553,10 +551,14 @@ public class TabStock extends javax.swing.JPanel {
             HH_table.getColumnModel().getColumn(3).setResizable(false);
             HH_table.getColumnModel().getColumn(3).setPreferredWidth(150);
         }
+        HH_table.setDefaultRenderer(Object.class, new TableGradientCell());
 
+        HH_table.setDefaultEditor(Object.class, null);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 100));
-        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 100));
 
         HH_Combo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -631,6 +633,11 @@ public class TabStock extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(35, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(35, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(35, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -894,6 +901,22 @@ public class TabStock extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_HH_T_CaiActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<hangHoa> lstHH = new ArrayList<>();
+        try {
+            hangHoa_List dao = new hangHoa_List();
+
+            lstHH = dao.findByTen(HH_timKiem.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Không thể tìm kiếm!!");
+        }
+        tblModel.setRowCount(0);
+        for (hangHoa hh : lstHH) {
+            tblModel.addRow(new String[]{String.valueOf(hh.getID()), hh.getTen(), hh.isGioiTinh() ? "Cái" : "Đực", hh.getNgNhap(), String.valueOf(hh.getGiaTien()), hh.getChiTiet()});
+        }
+        tblModel.fireTableDataChanged();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void initTable() {
         String[] header = new String[]{"ID", "Tên thú cưng", "Giới tính", "Ngày nhập", "Giá tiền", "Chi tiết"};
         tblModel.setColumnIdentifiers(header);
@@ -940,8 +963,6 @@ public class TabStock extends javax.swing.JPanel {
     private javax.swing.JButton HH_T_thoat;
     private javax.swing.JTable HH_table;
     private javax.swing.JTextField HH_timKiem;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JDialog capNhat;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -967,7 +988,6 @@ public class TabStock extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JDialog themThuCung;
     // End of variables declaration//GEN-END:variables
 }

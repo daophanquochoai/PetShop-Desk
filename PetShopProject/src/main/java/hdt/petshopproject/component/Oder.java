@@ -9,7 +9,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 
+<<<<<<< HEAD
 public class Oder extends javax.swing.JPanel{
+=======
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     public Oder() {
         initComponents();
     }
@@ -390,6 +393,12 @@ public class Oder extends javax.swing.JPanel{
     private void thanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanhToanActionPerformed
 
     }//GEN-LAST:event_thanhToanActionPerformed
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        ThanhToan thanhToan =new ThanhToan();
+        thanhToan.setVisible(true);
+    }//GEN-LAST:event_btnThanhToanActionPerformed
+
 
     private void DelOrder_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelOrder_BtnActionPerformed
         // TODO add your handling code here:

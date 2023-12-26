@@ -8,6 +8,7 @@ import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
@@ -53,6 +54,7 @@ public class TabHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -78,6 +80,8 @@ public class TabHome extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         lnIDKhachHang = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+=======
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         Search_TextField = new javax.swing.JTextField();
@@ -88,6 +92,7 @@ public class TabHome extends javax.swing.JPanel {
         listSP = new javax.swing.JPanel();
         oder = new hdt.petshopproject.component.Oder();
 
+<<<<<<< HEAD
         jMenu1.setText("jMenu1");
 
         jMenuItem1.setText("jMenuItem1");
@@ -337,6 +342,8 @@ public class TabHome extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+=======
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
         setBackground(new java.awt.Color(243, 239, 239));
         setForeground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1300, 833));
@@ -477,6 +484,7 @@ public class TabHome extends javax.swing.JPanel {
         String selectedLoai = (String) H_Combo.getSelectedItem();
         updateDataByLoai(selectedLoai);
     }
+<<<<<<< HEAD
     
     private void OrderFunc(){
         oder.getBtnHuyHD().addMouseListener(new MouseAdapter(){
@@ -592,6 +600,11 @@ public class TabHome extends javax.swing.JPanel {
         }
     }
     
+=======
+    private void initFormListSanPham(int soLuong){
+        listSP.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
+    }
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     private void updateDataByLoai(String loai) {
         
         cardSanPhamHome_List dao = new cardSanPhamHome_List();
@@ -628,6 +641,7 @@ public class TabHome extends javax.swing.JPanel {
             });
             }
         }
+        initFormListSanPham(dataList.size());
     }
 
     private void searchByName() {
@@ -713,6 +727,7 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
@@ -725,6 +740,8 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+=======
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

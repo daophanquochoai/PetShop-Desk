@@ -1,5 +1,6 @@
 package hdt.petshopproject.DAO;
 
+import hdt.petshopproject.model.DoanhThu;
 import hdt.petshopproject.model.hoaDon;
 import hdt.petshopproject.util.helper;
 import java.sql.Connection;
@@ -35,14 +36,14 @@ public class hoaDon_List {
                 + "JOIN hangHoa ON hangHoa.ID = chiTietDonHang.ID_HH \n"
                 + "where Bill.ID_HD = ?";
         try (
-                Connection con = helper.openConnection(); 
-                PreparedStatement pstm = con.prepareStatement(sql); ){
-                pstm.setString(1, String.valueOf(ID));
-                ResultSet rs = pstm.executeQuery(); 
-                if( rs.next()){
-                    return rs.getInt("tongTien");
-                }
-                else return 0;
+                Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
+            pstm.setString(1, String.valueOf(ID));
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("tongTien");
+            } else {
+                return 0;
+            }
         }
     }
 //    //them hoa don
@@ -123,4 +124,65 @@ public class hoaDon_List {
             return listHD;
         }
     }
+
+    public List<Integer> getNam() throws Exception {
+        String sql = "SELECT \n"
+                + "    YEAR(b.NgMua) AS Nam\n"
+                + "FROM Bill b\n"
+                + "GROUP BY YEAR(b.NgMua)\n"
+                + "ORDER BY Nam;";
+        try (
+                Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
+
+            ResultSet rs = pstm.executeQuery();
+            List<Integer> Nam = new ArrayList<>();
+            while (rs.next()) {
+                Nam.add(rs.getInt("Nam"));
+            }
+            return Nam;
+        }
+
+    }
+
+    public List<DoanhThu> getThang(int nam) throws Exception {
+        String sql = "SELECT \n"
+                + "    month(b.NgMua) AS thang,\n"
+                + "	sum(h.giaTien) as doanhthu\n"
+                + "FROM Bill b, chiTietDonHang c, hangHoa h\n"
+                + "where b.ID_HD=c.ID_HD and c.ID_HH=h.ID and year(b.NgMua) = ?\n"
+                + "GROUP BY month(b.NgMua)\n"
+                + "ORDER BY thang";
+        try (
+                Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
+            pstm.setString(1, String.valueOf(nam));
+            ResultSet rs = pstm.executeQuery();
+            List<DoanhThu> Thang = new ArrayList<>();
+            while (rs.next()) {
+                DoanhThu doanhThu = new DoanhThu();
+                doanhThu.setFirst(rs.getInt("thang"));
+                doanhThu.setSecond(rs.getInt("doanhthu"));
+                Thang.add(doanhThu);
+            }
+//            System.out.print(Thang.size());
+//            for(int i=0;i<Thang.size();i++){
+//               System.out.print("\n" + Thang.get(i).getFirst()+" " +Thang.get(i).getSecond());
+//            }
+            return Thang;
+        }
+
+    }
+
+//    public int soHD() throws Exception {
+//        String sql = "select count(*) as 'Sohoadon'\n"
+//                + "from Bill";
+//        try (
+//            Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
+//            ResultSet rs = pstm.executeQuery();
+//            if (rs.next()) {
+//                return rs.getInt("Sohoadon");
+//            }else{
+//                return 0;
+//            }
+//        }
+//    }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabNhanVien.java
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabSetting.java
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\hoaDon_List.java
@@ -29,3 +30,36 @@ D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproje
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\nhanVien_List.java
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\khachHang_List.java
 D:\HaoHaoHao\Netbeans\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\ThuCung.java
+=======
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\component\User.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabCustomer.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabStock.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\component\Oder.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\swing\scrollbar\ScrollBarCustom.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\hangHoa_List.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\nhanVien_List.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\home\TabHome.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\swing\scrollbar\ModernScrollBarUI.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\home\cardSanPham.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\ThuCung.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\Customer.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\swing\TableGradientCell.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\component\DanhSachThuCung.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\cardSanPhamHome.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\run\run.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabStaffManager.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\window\ThanhToan.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabBill.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\hoaDon_List.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\run\TabLogin.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\nhanVien.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\ThongKe.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\khachHang_List.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\Main.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\DoanhThu.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\hangHoa.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\model\hoaDon.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\form\TabRevenue.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\util\helper.java
+C:\Code\Java\PetShop-Desk\PetShopProject\src\main\java\hdt\petshopproject\DAO\cardSanPhamHome_List.java
+>>>>>>> f78f7ae8ee5f2eeae6706f90de2f926743526f2e
