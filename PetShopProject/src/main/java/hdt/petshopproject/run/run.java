@@ -4,21 +4,14 @@ import java.awt.Component;
 import hdt.petshopproject.form.TabBill;
 import hdt.petshopproject.form.TabCustomer;
 import hdt.petshopproject.form.home.TabHome;
-import hdt.petshopproject.form.TabNhanVien;
-import hdt.petshopproject.form.TabRevenue;
-import hdt.petshopproject.form.TabSetting;
 import hdt.petshopproject.form.TabStaffManager;
 import hdt.petshopproject.form.TabStock;
-import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import hdt.petshopproject.window.ThanhToan;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.EventListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -41,7 +34,7 @@ public final class run extends javax.swing.JFrame {
         initFirst();
         lbNameAccount.setText(acc);
         btnIdAccount.setText("ID : " + id);
-        tabHome.setlabelwithID(id);
+//        tabHome.setlabelwithID(id);
         accountID=acc;
         accoutPwd=id;
         CheckAdmin(id);
@@ -535,7 +528,7 @@ public final class run extends javax.swing.JFrame {
         // TODO add your handling code here:
         bRevenue.setForeground(new Color(0,153,204));
         pRevenue.setOpaque(true);
-        showForm(tabRevenue,5);
+//        showForm(tabRevenue,5);
     }//GEN-LAST:event_bRevenueActionPerformed
 
     private void bSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSettingActionPerformed
@@ -697,7 +690,7 @@ public final class run extends javax.swing.JFrame {
     private final TabHome tabHome = new TabHome();
     private final TabBill tabBill = new TabBill();
     private final TabStock tabStock = new TabStock();
-    private final TabRevenue tabRevenue = new TabRevenue();
+    //private final TabRevenue tabRevenue = new TabRevenue();
     private final TabStaffManager tabNhanvien = new TabStaffManager();
     
     private int tabNumber=1;
