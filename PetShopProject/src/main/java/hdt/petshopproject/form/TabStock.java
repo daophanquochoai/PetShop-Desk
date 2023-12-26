@@ -555,9 +555,10 @@ public class TabStock extends javax.swing.JPanel {
 
         HH_table.setDefaultEditor(Object.class, null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 100));
-        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 100));
 
         HH_Combo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -632,6 +633,11 @@ public class TabStock extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(35, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(35, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(35, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -894,6 +900,22 @@ public class TabStock extends javax.swing.JPanel {
     private void HH_T_CaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HH_T_CaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HH_T_CaiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<hangHoa> lstHH = new ArrayList<>();
+        try {
+            hangHoa_List dao = new hangHoa_List();
+
+            lstHH = dao.findByTen(HH_timKiem.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Không thể tìm kiếm!!");
+        }
+        tblModel.setRowCount(0);
+        for (hangHoa hh : lstHH) {
+            tblModel.addRow(new String[]{String.valueOf(hh.getID()), hh.getTen(), hh.isGioiTinh() ? "Cái" : "Đực", hh.getNgNhap(), String.valueOf(hh.getGiaTien()), hh.getChiTiet()});
+        }
+        tblModel.fireTableDataChanged();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void initTable() {
         String[] header = new String[]{"ID", "Tên thú cưng", "Giới tính", "Ngày nhập", "Giá tiền", "Chi tiết"};

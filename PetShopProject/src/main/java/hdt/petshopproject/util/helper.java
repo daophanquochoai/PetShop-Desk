@@ -9,7 +9,7 @@ public class helper {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyPetShop;encrypt=true;trustServerCertificate=true;";
         String username = "sa";
-        String password = "100303";
+        String password = "123456";
         Connection con = DriverManager.getConnection(connectionURL, username, password);
         return con;
     }

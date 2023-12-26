@@ -51,6 +51,7 @@ hdt\petshopproject\DAO\hangHoa_List.class
 hdt\petshopproject\run\run$8.class
 hdt\petshopproject\form\TabCustomer$13.class
 hdt\petshopproject\form\TabStock$12.class
+hdt\petshopproject\form\TabStaffManager$17.class
 hdt\petshopproject\run\run$3.class
 hdt\petshopproject\run\run$22.class
 hdt\petshopproject\form\TabStaffManager$10.class
@@ -79,6 +80,7 @@ hdt\petshopproject\run\run.class
 hdt\petshopproject\form\home\cardSanPham$1.class
 hdt\petshopproject\form\TabCustomer$7.class
 hdt\petshopproject\run\TabLogin.class
+hdt\petshopproject\form\TabBill$10.class
 hdt\petshopproject\run\run$6.class
 hdt\petshopproject\component\Oder$3.class
 hdt\petshopproject\form\TabStock$17.class
@@ -134,6 +136,7 @@ hdt\petshopproject\run\run$5.class
 hdt\petshopproject\model\hangHoa.class
 hdt\petshopproject\form\TabCustomer$11.class
 hdt\petshopproject\form\TabStaffManager$9.class
+hdt\petshopproject\form\TabStock$21.class
 hdt\petshopproject\component\Oder$2.class
 hdt\petshopproject\run\run$14.class
 hdt\petshopproject\form\home\cardSanPham.class

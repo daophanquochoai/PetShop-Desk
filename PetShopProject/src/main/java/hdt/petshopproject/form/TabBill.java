@@ -344,6 +344,7 @@ public class TabBill extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 100));
@@ -411,6 +412,11 @@ public class TabBill extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(35, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(35, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(35, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -635,6 +641,22 @@ public class TabBill extends javax.swing.JPanel {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         chiTietDonHang.setVisible(false);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               List<hoaDon> lstHD = new ArrayList<>();
+        try {
+            hoaDon_List dao = new hoaDon_List();
+            
+            lstHD = dao.findByTen(B_Input.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi tìm kiếm!!");
+        }
+        tblModel.setRowCount(0);
+        for (hoaDon hd : lstHD) {
+            tblModel.addRow(new String[]{String.valueOf(hd.getIdHD()), hd.getTenKH(), hd.getNgTao(), String.valueOf(hd.getThanhTien()), "--"});
+        }
+        tblModel.fireTableDataChanged();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

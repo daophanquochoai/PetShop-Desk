@@ -356,9 +356,9 @@ public class TabCustomer extends javax.swing.JPanel {
         CT_table.setDefaultRenderer(Object.class, new TableGradientCell());
         CT_table.setDefaultEditor(Object.class, null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(32767, 100));
         jPanel2.setMinimumSize(new java.awt.Dimension(500, 100));
-        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 100));
 
         CT_combo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -635,7 +635,19 @@ public class TabCustomer extends javax.swing.JPanel {
     }//GEN-LAST:event_CT_tableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        List<Customer> lstKH = new ArrayList<>();
+        try {
+            khachHang_List dao = new khachHang_List();
+
+            lstKH = dao.findByTen(CT_inputTK.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Không tìm kiếm được!!");
+        }
+        tblModel.setRowCount(0);
+        for (Customer kh : lstKH) {
+            tblModel.addRow(new String[]{String.valueOf(kh.getID()), kh.getHoVaTen(), kh.getSdt(), kh.getDiaChi(), "--"});
+        }
+        tblModel.fireTableDataChanged();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CT_LMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CT_LMMouseClicked
